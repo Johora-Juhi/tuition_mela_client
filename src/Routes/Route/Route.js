@@ -6,6 +6,7 @@ import Login from "../../Shared/Login/Login/Login";
 import SignUp from "../../Shared/Login/SignUp/SignUp";
 
 
+
 const router = createBrowserRouter([
     {
         path: '/',
@@ -20,15 +21,15 @@ const router = createBrowserRouter([
             //     path: '/category/:id',
             //     element: <PrivateRoute><ProductCategory></ProductCategory></PrivateRoute>,
             //     loader: ({ params }) => fetch(`https://assignment-twelve-server-six.vercel.app/category/${params.id}`)
-            // // },
-            // {
-            //     path: '/login',
-            //     element: <Login></Login>
             // },
-            // {
-            //     path: '/signup',
-            //     element: <SignUp></SignUp>
-            // },
+            {
+                path: '/login',
+                element: <Login></Login>
+            },
+            {
+                path: '/signup',
+                element: <SignUp></SignUp>
+            },
             {
                 path: '/faq',
                 // element: 
