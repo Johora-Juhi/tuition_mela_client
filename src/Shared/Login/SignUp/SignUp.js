@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
 import { useForm } from "react-hook-form";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 import useTitle from "../../../hooks/useTitle";
+import useToken from "../../../hooks/useToken";
 import "./SignUp.css";
 
 const SignUp = () => {
@@ -18,6 +19,11 @@ const SignUp = () => {
   } = useForm();
 
   const [createdUserEmail, setCreatedUserEmail] = useState("");
+  const [token] = useToken(createdUserEmail);
+
+  if (token) {
+    navigate("/");
+  }
 
   const handleSignUp = (data) => {
     console.log(data);
@@ -25,6 +31,7 @@ const SignUp = () => {
     createUser(data.email, data.password)
       .then((res) => {
         const user = res.user;
+        console.log(user);
         Swal.fire({
           position: "center center",
           icon: "success",
@@ -39,31 +46,28 @@ const SignUp = () => {
         updateUser(userInfo)
           .then(() => {})
           .catch((error) => console.log(error));
-        // saveUser(data.name, data.email, data.location, data.role);
-        console.log(user);
+        saveUser(data.name, data.email, data.location, data.role);
       })
-
       .catch((error) => {
-        console.error(error);
         setSignupError(error.message);
       });
   };
 
-  // const saveUser = (name, email, location, role) => {
-  //     const user = { name, email, location, role };
-  //     fetch('https://assignment-twelve-server-six.vercel.app/users', {
-  //         method: "POST",
-  //         headers: {
-  //             'content-type': 'application/json'
-  //         },
-  //         body: JSON.stringify(user)
-  //     })
-  //         .then(res => res.json())
-  //         .then(data => {
-  //             console.log(data);
-  //             setCreatedUserEmail(email);
-  //         })
-  // }
+  const saveUser = (name, email, location, role) => {
+    const user = { name, email, location, role };
+    fetch("http://localhost:5000/users", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setCreatedUserEmail(email);
+      });
+  };
 
   return (
     <div className="hero min-h-screen background -mt-10">
@@ -73,7 +77,7 @@ const SignUp = () => {
             <h1 className="text-3xl text-start text-sky-900 font-bold">
               New account
             </h1>
-            
+
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Name</span>
@@ -111,7 +115,11 @@ const SignUp = () => {
                 <span className="label-text text-red-500">{signupError}</span>
               </label>
             )}
-            <p className="text-start text-sm mt-2 ml-0 md:ml-1">The password must have at least 8 characters, at least 1 digit(s), at least 1 lower case letter(s), at least 1 upper case letter(s), at least 1 special character(s) such as as !,$,%,&,? or #</p>
+            <p className="text-start text-sm mt-2 ml-0 md:ml-1">
+              The password must have at least 8 characters, at least 1 digit(s),
+              at least 1 lower case letter(s), at least 1 upper case letter(s),
+              at least 1 special character(s) such as as !,$,%,&,? or #
+            </p>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Password</span>
@@ -119,8 +127,14 @@ const SignUp = () => {
               <input
                 {...register("password", {
                   required: "Password is required",
-                  minLength: { value: 8, message: 'Password must be 8 charecters or more' },
-                  pattern: { value: /(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "])/, message: "Password must be strong" }
+                  minLength: {
+                    value: 8,
+                    message: "Password must be 8 charecters or more",
+                  },
+                  pattern: {
+                    value: /(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "])/,
+                    message: "Password must be strong",
+                  },
                 })}
                 type="password"
                 placeholder="password"

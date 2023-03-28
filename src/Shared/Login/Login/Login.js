@@ -1,9 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 import { FaGoogle, FaGithub } from "react-icons/fa";
 import useTitle from "../../../hooks/useTitle";
 import { useForm } from "react-hook-form";
+import useToken from "../../../hooks/useToken";
 
 const Login = () => {
   useTitle("Login");
@@ -12,14 +13,24 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { googleLogin, signIn } = useContext(AuthContext);
+  const { signIn } = useContext(AuthContext);
   const [loginError, setLoginError] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const [LoginUserEmail, setLoginUserEmail] = useState("");
-  // const [token] = useToken(LoginUserEmail);
+  const [token] = useToken(LoginUserEmail);
   const user = useContext(AuthContext);
+
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [from, token, navigate]);
+
+  if (user?.email) {
+    navigate(from, { replace: true });
+  }
 
   const handleLogin = (data) => {
     console.log(data);
@@ -28,43 +39,21 @@ const Login = () => {
     signIn(data.email, data.password)
       .then((res) => {
         const user = res.user;
-        console.log(user);
         setLoginUserEmail(data.email);
       })
       .catch((error) => {
-        console.log(error);
         setLoginError(error.message);
       });
   };
 
-  // const handleGoogleSignIn = () => {
-
-  //     googleLogin()
-  //         .then(result => {
-  //             const user = result.user;
-  //             console.log(user);
-  //             navigate(from, { replace: true });
-  //         })
-  //         .catch(error => console.error('error', error))
-  // }
-  // const handleGithubSignIn = () => {
-
-  //     githubLogin()
-  //         .then(result => {
-  //             const user = result.user;
-  //             console.log(user);
-  //             navigate(from, { replace: true });
-  //         })
-  //         .catch(error => console.error('error', error))
-  // }
   return (
     <div className="hero background -mt-10 min-h-screen">
       <div className="hero-content">
         <div className="card shadow-2xl border border-accent">
           <form onSubmit={handleSubmit(handleLogin)} className="card-body">
             <h1 className="text-3xl font-bold text-start text-sky-900">
-            Login here!
-                        </h1>
+              Login here!
+            </h1>
             <div className="form-control">
               <label className="label">
                 <span className="label-text">Email</span>
@@ -101,12 +90,11 @@ const Login = () => {
                   <p className="label-text text-red-500">{loginError}</p>
                 </label>
               )}
-              {/* <label className="label">
-                        <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                    </label> */}
             </div>
             <div className="text-start">
-              <button className="btn btn-accent text-white mt-2 rounded-none">Log in</button>
+              <button className="btn btn-accent text-white mt-2 rounded-none">
+                Log in
+              </button>
             </div>
             <hr />
             <p className="text-start text-sky-900 font-bold text-lg pt-4">
