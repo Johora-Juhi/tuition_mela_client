@@ -1,5 +1,3 @@
-import { useQuery } from "@tanstack/react-query";
-// import { format } from "date-fns";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -18,21 +16,10 @@ const AddTuition = () => {
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
 
-  //   const { data: categories = [] } = useQuery({
-  //     queryKey: ["categories"],
-  //     queryFn: async () => {
-  //       const res = await fetch(
-  //         "https://assignment-twelve-server-six.vercel.app/categoriesType"
-  //       );
-  //       const data = await res.json();
-  //       return data;
-  //     },
-  //   });
-
   const handleAddTuition = (data) => {
     const tuition = {
       email: user.email,
-      class: data.class,
+      yourClass: data.class,
       subject: data.subject,
       weekly: data.weekly,
       salary: data.salary,

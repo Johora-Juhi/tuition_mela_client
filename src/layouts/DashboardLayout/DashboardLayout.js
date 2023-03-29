@@ -9,7 +9,6 @@ import Navbar from '../../Shared/Navbar/Navbar';
 const DashboardLayout = () => {
     const { user } = useContext(AuthContext);
     const [isStudent] = useStudent(user?.email);
-    console.log(isStudent);
     const [isTutor] = useTutor(user?.email);
     return (
         <div>
@@ -22,11 +21,11 @@ const DashboardLayout = () => {
                 <div className="drawer-side">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 text-base-content">
-                        {/* {isTutor &&
+                        {isTutor &&
                             <>
-                            <li><Link to='/dashboard'>My Tuition</Link></li>
+                            <li><Link to='/dashboard/allApplications'>All Applications</Link></li>
                             </>
-                        } */}
+                        }
                         
                         {
                             isStudent && <>

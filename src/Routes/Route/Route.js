@@ -3,8 +3,10 @@ import DashboardLayout from "../../layouts/DashboardLayout/DashboardLayout";
 import Main from "../../layouts/Main/Main";
 import AddTuition from "../../Pages/Dashboard/AddTuition/AddTuition";
 import Dashboard from "../../Pages/Dashboard/Dasboard/Dashboard";
+import MyApplications from "../../Pages/Dashboard/MyApplications/MyApplications";
 import Home from "../../Pages/Home/Home/Home";
 import Profile from "../../Pages/Profile/Profile";
+import Tuitions from "../../Pages/Tuitions/Tuitions/Tuitions";
 import DisplayError from "../../Shared/DisplayError/DisplayError";
 import Login from "../../Shared/Login/Login/Login";
 import SignUp from "../../Shared/Login/SignUp/SignUp";
@@ -30,6 +32,11 @@ const router = createBrowserRouter([
                 loader: ({ params }) => fetch(`http://localhost:5000/profile/${params.email}`)
             },
             {
+                path: '/tuitions',
+                element: <PrivateRoute><Tuitions></Tuitions></PrivateRoute>,
+                loader: () => fetch(`http://localhost:5000/tuitions`)
+            },
+            {
                 path: '/login',
                 element: <Login></Login>
             },
@@ -52,10 +59,10 @@ const router = createBrowserRouter([
                 path: '/dashboard',
                 element: <Dashboard></Dashboard>
             },
-            // {
-            //     path: '/dashboard',
-            //     element: <TutorRoute><MyOrders></MyOrders></TutorRoute>
-            // },
+            {
+                path: '/dashboard/allApplications',
+                element: <TutorRoute><MyApplications></MyApplications></TutorRoute>
+            },
             {
                 path: '/dashboard/addTuition',
                 element: <StudentRoute><AddTuition></AddTuition></StudentRoute>
