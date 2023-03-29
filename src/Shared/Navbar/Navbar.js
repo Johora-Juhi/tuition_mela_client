@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { FaUserCircle } from "react-icons/fa";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
+import { VscChevronDown } from "react-icons/vsc";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -61,7 +61,6 @@ const Navbar = () => {
             {menuItems}
           </ul>
         </div>
-        {/* <img style={{ width: '35px', marginLeft: '20px' }} src={Logo} alt="" /> */}
         <h1 className="text-3xl text-sky-900 font-bold pl-3 mb-2">
           tuition<span className="text-accent">Mela</span>
         </h1>
@@ -76,14 +75,14 @@ const Navbar = () => {
           <>
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="text-accent font-bold">
-                {user?.displayName}
+                {user?.displayName} <VscChevronDown className="inline"></VscChevronDown>
               </label>
               <ul
                 tabIndex={0}
                 className="menu dropdown-content p-2 shadow bg-base-100 rounded-box w-52 mt-4"
               >
                 <li>
-                  <Link>Profile</Link>
+                  <Link to={`/profile/${user?.email}`}>Profile</Link>
                 </li>
                 <li>
                   <button onClick={handleLogOut} variant="primary">

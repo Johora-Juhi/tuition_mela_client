@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
-import { FaGoogle, FaGithub } from "react-icons/fa";
 import useTitle from "../../../hooks/useTitle";
 import { useForm } from "react-hook-form";
 import useToken from "../../../hooks/useToken";

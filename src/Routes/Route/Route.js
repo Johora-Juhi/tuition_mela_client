@@ -1,9 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../layouts/Main/Main";
 import Home from "../../Pages/Home/Home/Home";
+import Profile from "../../Pages/Profile/Profile";
 import DisplayError from "../../Shared/DisplayError/DisplayError";
 import Login from "../../Shared/Login/Login/Login";
 import SignUp from "../../Shared/Login/SignUp/SignUp";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 
 
@@ -17,11 +19,11 @@ const router = createBrowserRouter([
                 path: '/',
                 element: <Home></Home>
             },
-            // {
-            //     path: '/category/:id',
-            //     element: <PrivateRoute><ProductCategory></ProductCategory></PrivateRoute>,
-            //     loader: ({ params }) => fetch(`https://assignment-twelve-server-six.vercel.app/category/${params.id}`)
-            // },
+            {
+                path: '/profile/:email',
+                element: <PrivateRoute><Profile></Profile></PrivateRoute>,
+                loader: ({ params }) => fetch(`http://localhost:5000/profile/${params.email}`)
+            },
             {
                 path: '/login',
                 element: <Login></Login>
