@@ -1,11 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
+import DashboardLayout from "../../layouts/DashboardLayout/DashboardLayout";
 import Main from "../../layouts/Main/Main";
+import AddTuition from "../../Pages/Dashboard/AddTuition/AddTuition";
+import Dashboard from "../../Pages/Dashboard/Dasboard/Dashboard";
 import Home from "../../Pages/Home/Home/Home";
 import Profile from "../../Pages/Profile/Profile";
 import DisplayError from "../../Shared/DisplayError/DisplayError";
 import Login from "../../Shared/Login/Login/Login";
 import SignUp from "../../Shared/Login/SignUp/SignUp";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import StudentRoute from "../StudentRoute/StudentRoute";
+import TutorRoute from "../TutorRoute/TutorRoute";
 
 
 
@@ -38,46 +43,29 @@ const router = createBrowserRouter([
             },
         ]
     },
-    // {
-    //     path: '/dashboard',
-    //     element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
-    //     errorElement: <DisplayError></DisplayError>,
-    //     children: [
-    //         {
-    //             path: '/dashboard',
-    //             element: <Dashboard></Dashboard>
-    //         },
-    //         {
-    //             path: '/dashboard/myorders',
-    //             element: <BuyerRoute><MyOrders></MyOrders></BuyerRoute>
-    //         },
-    //         // {
-    //         //     path: '/dashboard/payment/:id',
-    //         //     element: <MakePayment></MakePayment>,
-    //         //     loader: ({ params }) => fetch(`https://assignment-twelve-server-six.vercel.app/myorders/${params.id}`)
-    //         // },
-    //         {
-    //             path: '/dashboard/allsellers',
-    //             element: <AdminRoute><AllSellers></AllSellers></AdminRoute>
-    //         },
-    //         {
-    //             path: '/dashboard/allbuyers',
-    //             element: <AdminRoute><AllBuyers></AllBuyers></AdminRoute>
-    //         },
-    //         {
-    //             path: '/dashboard/reportedItems',
-    //             element: <AdminRoute><ReportedItems></ReportedItems></AdminRoute>
-    //         },
-    //         {
-    //             path: '/dashboard/addProducts',
-    //             element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
-    //         },
-    //         {
-    //             path: '/dashboard/myProducts',
-    //             element: <SellerRoute><MyProducts></MyProducts></SellerRoute>
-    //         },
-    //     ]
-    // }
+    {
+        path: '/dashboard',
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        errorElement: <DisplayError></DisplayError>,
+        children: [
+            {
+                path: '/dashboard',
+                element: <Dashboard></Dashboard>
+            },
+            // {
+            //     path: '/dashboard',
+            //     element: <TutorRoute><MyOrders></MyOrders></TutorRoute>
+            // },
+            {
+                path: '/dashboard/addTuition',
+                element: <StudentRoute><AddTuition></AddTuition></StudentRoute>
+            },
+            // {
+            //     path: '/dashboard/myTuitions',
+            //     element: <StudentRoute><MyTuitions></MyTuitions></StudentRoute>
+            // },
+        ]
+    }
 ])
 
 export default router;

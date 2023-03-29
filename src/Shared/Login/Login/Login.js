@@ -46,7 +46,7 @@ const Login = () => {
   };
 
   return (
-    <div className="hero background -mt-10 min-h-screen">
+    <div className="hero background  min-h-screen">
       <div className="hero-content">
         <div className="card shadow-2xl border border-accent">
           <form onSubmit={handleSubmit(handleLogin)} className="card-body">

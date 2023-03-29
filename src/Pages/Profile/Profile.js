@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import useTitle from "../../hooks/useTitle";
 
@@ -34,6 +35,17 @@ const Profile = () => {
     })
       .then((res) => res.json())
       .then((data) => {
+        if (data.modifiedCount > 0) {
+          Swal.fire({
+            position: "center center",
+            icon: "success",
+            title: "Profile Updated Successfully",
+            showConfirmButton: false,
+            timer: 2000,
+          });
+          console.log(data);
+      }
+
         console.log(data);
       });
   };
