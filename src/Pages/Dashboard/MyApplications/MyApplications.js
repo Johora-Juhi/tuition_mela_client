@@ -1,9 +1,10 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 import useTitle from '../../../hooks/useTitle';
 import Loading from '../../../Shared/Loading/Loading';
+import alone from '../../../assets/Alone.gif'
+
 
 
 const MyApplications = () => {
@@ -30,8 +31,11 @@ const MyApplications = () => {
     }
 
     return (
-        <div className='container mx-auto px-5 py-10'>
-            <h1 className='text-3xl text-sky-900 font-bold mb-10 '>My Applications</h1>
+        <div className='lg:w-3/4 mx-auto px-5 py-10'>
+            {
+                applications.length > 0 ?
+                <>
+                <h1 className='text-3xl text-sky-900 font-bold mb-10 uppercase'>My Applications</h1>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
@@ -59,7 +63,12 @@ const MyApplications = () => {
                         }
                     </tbody>
                 </table>
+            </div></> :
+            <div className="text-center">
+            <h1 className='text-3xl text-sky-900 font-bold uppercase'>No applications yet!</h1>
+            <img className="mx-auto" src={alone} alt="" />
             </div>
+            }
         </div>
     );
 };

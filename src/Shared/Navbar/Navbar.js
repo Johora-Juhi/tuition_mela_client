@@ -25,7 +25,7 @@ const Navbar = () => {
       </li>
       {user?.uid ? 
         <>
-          {isTutor && (
+          {isTutor && 
             <>
               <li>
                 <Link to="/myApplications">My Applications</Link>
@@ -35,7 +35,7 @@ const Navbar = () => {
               </li>
               
             </>
-          )
+          
           }
 
           {isStudent && (

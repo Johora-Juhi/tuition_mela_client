@@ -1,6 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
-import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
+import React from 'react';
 import useTitle from '../../../hooks/useTitle';
 import Loading from '../../../Shared/Loading/Loading';
 
@@ -28,8 +27,8 @@ const AllApplications = () => {
     }
 
     return (
-        <div className='container mx-auto px-5 py-10'>
-            <h1 className='text-3xl text-sky-900 font-bold mb-10 '>All Applications</h1>
+        <div className='lg:w-3/4 mx-auto px-5 py-10'>
+            <h1 className='text-3xl text-sky-900 font-bold mb-10 uppercase'>All Applications</h1>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
