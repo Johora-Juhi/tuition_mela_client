@@ -104,9 +104,9 @@ const Login = () => {
             </p>
             <div className="text-start">
               {" "}
-              <button className="btn btn-outline btn-accent rounded-none">
-                <Link to="/signup"> Create new account</Link>
-              </button>
+              
+                <Link to="/signup"> <button className="btn btn-outline btn-accent rounded-none">Create new account</button></Link>
+              
             </div>{" "}
           </form>
         </div>

@@ -1,8 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
-import DashboardLayout from "../../layouts/DashboardLayout/DashboardLayout";
 import Main from "../../layouts/Main/Main";
 import AddTuition from "../../Pages/Dashboard/AddTuition/AddTuition";
-import Dashboard from "../../Pages/Dashboard/Dasboard/Dashboard";
+import AllApplications from "../../Pages/Dashboard/AllApplications/AllApplications";
+import Applications from "../../Pages/Dashboard/Applications/Applications";
 import MyApplications from "../../Pages/Dashboard/MyApplications/MyApplications";
 import Home from "../../Pages/Home/Home/Home";
 import Profile from "../../Pages/Profile/Profile";
@@ -45,32 +45,21 @@ const router = createBrowserRouter([
                 element: <SignUp></SignUp>
             },
             {
-                path: '/faq',
-                // element: 
-            },
-        ]
-    },
-    {
-        path: '/dashboard',
-        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
-        errorElement: <DisplayError></DisplayError>,
-        children: [
-            {
-                path: '/dashboard',
-                element: <Dashboard></Dashboard>
+                path: '/allApplications',
+                element: <TutorRoute><AllApplications></AllApplications></TutorRoute>
             },
             {
-                path: '/dashboard/allApplications',
+                path: '/myApplications',
                 element: <TutorRoute><MyApplications></MyApplications></TutorRoute>
             },
             {
-                path: '/dashboard/addTuition',
+                path: '/addTuition',
                 element: <StudentRoute><AddTuition></AddTuition></StudentRoute>
+            }, {
+                path: '/applications/:id',
+                element: <StudentRoute><Applications></Applications></StudentRoute>,
+                loader:  ({ params }) => fetch(`http://localhost:5000/allApplications/${params.id}`)
             },
-            // {
-            //     path: '/dashboard/myTuitions',
-            //     element: <StudentRoute><MyTuitions></MyTuitions></StudentRoute>
-            // },
         ]
     }
 ])

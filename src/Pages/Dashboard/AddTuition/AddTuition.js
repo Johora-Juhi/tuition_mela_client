@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +16,8 @@ const AddTuition = () => {
   } = useForm();
   const navigate = useNavigate();
   const { user } = useContext(AuthContext);
+  const postedOn = format(new Date(), 'PP')
+
 
   const handleAddTuition = (data) => {
     const tuition = {
@@ -26,6 +29,7 @@ const AddTuition = () => {
       name: data.name,
       location: data.location,
       mobile: data.mobile,
+      postedOn
     };
 
     fetch("http://localhost:5000/tuitions", {
@@ -45,7 +49,7 @@ const AddTuition = () => {
           showConfirmButton: false,
           timer: 2000,
         });
-        navigate("/dashboard/myTuitions");
+        navigate("/tuitions");
       });
   };
   return (

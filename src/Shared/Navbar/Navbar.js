@@ -2,9 +2,13 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthProvider/AuthProvider";
 import { VscChevronDown } from "react-icons/vsc";
+import useStudent from "../../hooks/useStudent";
+import useTutor from "../../hooks/useTutor";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [isStudent] = useStudent(user?.email);
+  const [isTutor] = useTutor(user?.email);
 
   const handleLogOut = () => {
     logOut()
@@ -19,19 +23,33 @@ const Navbar = () => {
       <li>
         <Link to="/tuitions">Tuitions</Link>
       </li>
-      <li>
-        <Link to="/blog">Blog</Link>
-      </li>
-      <li>
-        <Link to="/faq">Faq</Link>
-      </li>
-      {user?.uid ? (
-        <li>
-          <Link to="/dashboard">Dashboard</Link>
-        </li>
-      ) : (
-        <> </>
-      )}
+      {user?.uid ? 
+        <>
+          {isTutor && (
+            <>
+              <li>
+                <Link to="/myApplications">My Applications</Link>
+              </li>
+              <li>
+                <Link to="/allApplications">All Applications</Link>
+              </li>
+              
+            </>
+          )
+          }
+
+          {isStudent && (
+            <>
+              <li>
+                <Link to="/addTuition">Add Tuition</Link>
+              </li>
+            </>
+          )
+          }
+        </>
+       : 
+        <></>
+      }
     </React.Fragment>
   );
   return (
@@ -71,11 +89,13 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        {user?.uid ? (
+        {user?.uid ? 
           <>
             <div className="dropdown dropdown-end">
               <label tabIndex={0} className="text-accent font-bold">
-                {user?.displayName} <VscChevronDown className="inline"></VscChevronDown>
+                {/* {user?.displayName} */}
+                Account
+                <VscChevronDown className="inline"></VscChevronDown>
               </label>
               <ul
                 tabIndex={0}
@@ -92,7 +112,7 @@ const Navbar = () => {
               </ul>
             </div>
           </>
-        ) : (
+         : 
           <>
             <Link className="text-light" to="/login">
               <button
@@ -111,7 +131,7 @@ const Navbar = () => {
               </button>
             </Link>
           </>
-        )}
+        }
       </div>
     </div>
   );

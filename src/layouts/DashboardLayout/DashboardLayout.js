@@ -23,6 +23,7 @@ const DashboardLayout = () => {
                     <ul className="menu p-4 w-80 text-base-content">
                         {isTutor &&
                             <>
+                            <li><Link to='/dashboard/myApplications'>My Applications</Link></li>
                             <li><Link to='/dashboard/allApplications'>All Applications</Link></li>
                             </>
                         }

@@ -1,11 +1,17 @@
 .proBanner {
     background: rgba(0, 0, 0, 0.20) url(../../../assets/banner-bg.jpg);
     background-blend-mode: darken;
-    background-position: center;
+    background-position: bottom;
     background-size: cover;
     background-repeat: no-repeat;
-    /* height: 400px; */
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.helloImage{
+    transition: 1.5s;
+}
+
+.proBanner:hover .helloImage{
+    transform: translateY(-30px);
 }

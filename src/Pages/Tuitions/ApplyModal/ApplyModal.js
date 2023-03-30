@@ -1,16 +1,19 @@
+import { format } from 'date-fns';
 import React, { useContext } from 'react';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../../context/AuthProvider/AuthProvider';
 
 const ApplyModal = ({ avaiableTuitions, setAvailabeTuitions }) => {
     const { user } = useContext(AuthContext);
+    const appliedOn = format(new Date(), 'PP')
 
-    const {  _id, yourClass , subject, salary } = avaiableTuitions;
+
+    const {  _id, yourClass , subject, salary, email } = avaiableTuitions;
     const handleOrder = event => {
         event.preventDefault();
         const form = event.target;
         const tutorName = form.name.value;
-        const email = form.email.value;
+        const tutorEmail = form.email.value;
         const phone = form.phone.value;
         const education = form.education.value;
         const institute = form.institute.value;
@@ -18,13 +21,15 @@ const ApplyModal = ({ avaiableTuitions, setAvailabeTuitions }) => {
         const order = {
             tuitionId: _id,
             tutorName,
-            email,
+            postedEmail: email,
+            tutorEmail,
             phone,
             education,
             institute,
             yourClass,
             subject,
-            salary
+            salary,
+            appliedOn
         }
         fetch('http://localhost:5000/applications', {
             method: 'POST',
