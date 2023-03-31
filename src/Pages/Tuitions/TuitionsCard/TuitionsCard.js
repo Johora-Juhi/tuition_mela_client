@@ -46,7 +46,8 @@ const TuitionsCard = ({ tuition, setAvailabeTuitions }) => {
   console.log(applications);
 
   return (
-    <div className="card background lg:w-96 bg-base-100 shadow-xl border border-accent">
+    <div className="card background lg:w-96 bg-base-100 shadow-xl border border-accent "  data-aos="fade-up"
+    data-aos-duration="1000">
       <div className="card-body">
         <h2 className="card-title font-bold text-3xl text-sky-900">
           Class {yourClass}
