@@ -89,7 +89,7 @@ const TuitionsCard = ({ tuition, setAvailabeTuitions }) => {
           </div>
          : 
           <div className="relative">
-            <button className="btn bg-sky-900 tracking-wider " disabled>
+            <button className="btn bg-sky-900 tracking-wider" disabled>
               Application
             </button>
             <div className="badge  bg-white text-black font-bold absolute -top-3 right-1">

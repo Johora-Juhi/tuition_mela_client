@@ -19,7 +19,6 @@ const Profile = () => {
     const phone = form.phone.value;
     // const role = data.role;
     const profile = { name, email, location, phone };
-    console.log(profile);
     fetch(`http://localhost:5000/users/${user?.email}`, {
       method: "POST",
       headers: {
@@ -49,7 +48,7 @@ const Profile = () => {
     <div>
       <div className="w-3/6 mx-auto shadow-2xl">
         <form onSubmit={updateprofile} className="p-20">
-          <h1 className="text-3xl text-start text-sky-900 font-bold">
+          <h1 className="text-3xl text-start text-sky-900 font-bold uppercase">
             Profile information
           </h1>
           <p className="text-start pt-2 pb-4">

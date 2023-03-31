@@ -3,7 +3,7 @@ import CountUp from "react-countup";
 import books from "../../../assets/books.png";
 import teacher from "../../../assets/teacher.png";
 import people from "../../../assets/people.png";
-import technology from "../../../assets/technology.png";
+import essential from "../../../assets/essential.png";
 
 const Growing = () => {
   return (
@@ -78,7 +78,7 @@ const Growing = () => {
         </div>
         <div className="flex gap-8 items-center">
           <div className="w-[90px]">
-            <img src={technology} alt="" />
+            <img src={essential} alt="" />
           </div>{" "}
           <div className="flex flex-col gap-2">
             <div className="flex gap-1">
@@ -91,7 +91,7 @@ const Growing = () => {
                   scrollSpyDelay={500}
                 />
               </div>
-              <div className="text-3xl w-2/4 text-accent">%</div>
+              <div className="text-3xl w-1/4 text-accent">%</div>
             </div>
             <p className="text-gray-300 text-start font-bold text-xl">Satisfaction rate</p>
           </div>

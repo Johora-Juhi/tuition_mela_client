@@ -23,6 +23,9 @@ const Navbar = () => {
       <li>
         <Link to="/tuitions">Tuitions</Link>
       </li>
+      <li>
+        <Link to="/about">About</Link>
+      </li>
       {user?.uid ? 
         <>
           {isTutor && 
@@ -38,13 +41,13 @@ const Navbar = () => {
           
           }
 
-          {isStudent && (
+          {isStudent && 
             <>
               <li>
                 <Link to="/addTuition">Add Tuition</Link>
               </li>
             </>
-          )
+          
           }
         </>
        : 

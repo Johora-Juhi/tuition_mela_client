@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../layouts/Main/Main";
+import About from "../../Pages/About/About/About";
 import AddTuition from "../../Pages/Dashboard/AddTuition/AddTuition";
 import AllApplications from "../../Pages/Dashboard/AllApplications/AllApplications";
 import Applications from "../../Pages/Dashboard/Applications/Applications";
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
                 path: '/tuitions',
                 element: <PrivateRoute><Tuitions></Tuitions></PrivateRoute>,
                 loader: () => fetch(`http://localhost:5000/tuitions`)
+            },
+            {
+                path: '/about',
+                element: <About></About>
             },
             {
                 path: '/login',
