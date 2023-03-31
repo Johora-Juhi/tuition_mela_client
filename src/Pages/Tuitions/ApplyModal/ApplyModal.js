@@ -9,7 +9,7 @@ const ApplyModal = ({ avaiableTuitions, setAvailabeTuitions }) => {
 
 
     const {  _id, yourClass , subject, salary, email } = avaiableTuitions;
-    const handleOrder = event => {
+    const handleApplication = event => {
         event.preventDefault();
         const form = event.target;
         const tutorName = form.name.value;
@@ -18,7 +18,7 @@ const ApplyModal = ({ avaiableTuitions, setAvailabeTuitions }) => {
         const education = form.education.value;
         const institute = form.institute.value;
 
-        const order = {
+        const application = {
             tuitionId: _id,
             tutorName,
             postedEmail: email,
@@ -37,7 +37,7 @@ const ApplyModal = ({ avaiableTuitions, setAvailabeTuitions }) => {
                 'content-type': 'application/json',
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
             },
-            body: JSON.stringify(order),
+            body: JSON.stringify(application),
         })
             .then(res => res.json())
             .then(data => {
@@ -60,7 +60,6 @@ const ApplyModal = ({ avaiableTuitions, setAvailabeTuitions }) => {
                     })
                 }
             })
-        console.log(order);
     }
     return (
         <div>
@@ -69,7 +68,7 @@ const ApplyModal = ({ avaiableTuitions, setAvailabeTuitions }) => {
             <div className="modal">
                 <div className="modal-box relative">
                     <label htmlFor="order-modal" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <form onSubmit={handleOrder} className='mt-6 grid gap-2 grid-cols-1'>
+                    <form onSubmit={handleApplication} className='mt-6 grid gap-2 grid-cols-1'>
                         <label className="label">
                             <span className="label-text">Tutors's Name</span>
                         </label>

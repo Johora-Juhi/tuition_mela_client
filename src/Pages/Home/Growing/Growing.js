@@ -9,7 +9,7 @@ const Growing = () => {
   return (
     <div className="container py-20 text-center">
       <p className="text-4xl font-bold text-sky-900 pb-2">
-        We just keep growing
+        We Just Keep Growing
       </p>
       <p className="text-stone-400">
         Explore all of our courses and pick your suitable ones to enroll and

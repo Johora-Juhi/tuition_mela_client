@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { isThisHour } from "date-fns";
 import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../context/AuthProvider/AuthProvider";
 import useStudent from "../../../hooks/useStudent";
 import useTutor from "../../../hooks/useTutor";
+import './TuitionsCard.css'
 
 const TuitionsCard = ({ tuition, setAvailabeTuitions }) => {
   useEffect(() => {
@@ -13,8 +13,6 @@ const TuitionsCard = ({ tuition, setAvailabeTuitions }) => {
   const { user } = useContext(AuthContext);
   const [isStudent] = useStudent(user?.email);
   const [isTutor] = useTutor(user?.email);
-  console.log(isStudent);
-  console.log(isTutor);
   const {
     yourClass,
     _id,
@@ -27,7 +25,6 @@ const TuitionsCard = ({ tuition, setAvailabeTuitions }) => {
     mobile,
     postedOn,
   } = tuition;
-  console.log(_id);
 
   const url = `http://localhost:5000/allApplications/${_id}`;
 
@@ -89,8 +86,8 @@ const TuitionsCard = ({ tuition, setAvailabeTuitions }) => {
             </div>
           </div>
          : 
-          <div className="relative">
-            <button className="btn bg-sky-900 tracking-wider" disabled>
+          <div className="relative cursor-pointer" data-title="Not your posted Tuition!">
+            <button className="btn  tracking-wider " disabled >
               Application
             </button>
             <div className="badge  bg-white text-black font-bold absolute -top-3 right-1">
