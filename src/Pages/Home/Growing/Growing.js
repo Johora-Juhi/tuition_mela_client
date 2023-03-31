@@ -7,7 +7,7 @@ import essential from "../../../assets/essential.png";
 
 const Growing = () => {
   return (
-    <div className="container py-20 text-center">
+    <div className="container py-20 text-center mx-auto">
       <p className="text-4xl font-bold text-sky-900 pb-2">
         We Just Keep Growing
       </p>
