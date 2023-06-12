@@ -70,7 +70,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="hero min-h-screen background">
+    <div className="hero min-h-screen background -mb-10">
       <div className="hero-content p-0">
         <div className="card w-full sm:max-w-sm md:max-w-lg shadow-2xl sm:border-0 md:border border-accent my-20">
           <form onSubmit={handleSubmit(handleSignUp)} className="card-body ">

@@ -6,6 +6,7 @@ import LearnersSay from '../LearnersSay/LearnersSay';
 import StartLearning from '../StartLearning/StartLearning';
 import useTitle from '../../../hooks/useTitle';
 import Growing from '../Growing/Growing';
+import BecomeInstructor from '../BecomeInstructor/BecomeInstructor';
 
 
 const Home = () => {
@@ -18,8 +19,9 @@ const Home = () => {
             <Banner></Banner>
             <LookingFor></LookingFor>
             <StartLearning></StartLearning>
-            <Growing></Growing>
             <ChooseUs></ChooseUs>
+            <Growing></Growing>
+            <BecomeInstructor></BecomeInstructor>
             <LearnersSay></LearnersSay>
         </div>
         

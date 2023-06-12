@@ -1,0 +1,13 @@
+.back{
+    background-color: #ffffff;
+    background-image: url("../../../assets/subscribe.png");
+  background-repeat: no-repeat;
+  background-position: right top;
+}
+.pink{
+    background-color: #ffffff;
+    background-image: url("../../../assets/pinkbackground.jpg");
+  background-repeat: no-repeat;
+  background-position: right top;
+  background-size: cover;
+}
